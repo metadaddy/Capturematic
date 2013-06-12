@@ -3,9 +3,9 @@
     <head>
         <title>Salesforce Hybrid Application Bootstrap Page</title>
         
-        <script src="cordova-2.3.0.js"></script>
-        <script src="SFHybridApp.js"></script>
-        <script src="SalesforceOAuthPlugin.js"></script>
+        <script src="resources/lib/cordova-2.3.0.js"></script>
+        <script src="resources/lib/SFHybridApp.js"></script>
+        <script src="resources/lib/SalesforceOAuthPlugin.js"></script>
         <script src="bootconfig.js"></script>
         
         <!-- log window styling -->
@@ -15,6 +15,11 @@
         </style>
 
         <script>
+            // Log JS errors to Cordova console
+            window.onerror = function(message, url, lineNumber) {
+              cordova.require("salesforce/util/logger").logToConsole("Error: "+message+" in "+url+" at line "+lineNumber);
+            };
+            
             document.addEventListener("deviceready", cordova.require("salesforce/util/bootstrap").onDeviceReady);
         </script>
 

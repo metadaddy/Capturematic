@@ -1,130 +1,574 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0; user-scalable=no" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <title>Media Capture</title>
 
-    <!-- include jquery mobile -->
-    <link rel="stylesheet" href="jquery/jquery.mobile-1.2.0.min.css" />
-    <script src="jquery/jquery-1.8.3.min.js"></script>
-    <script src="jquery/jquery.mobile-1.2.0.min.js"></script>
-        
-    <!-- Include cordova. -->
-	<script src="cordova-2.3.0.js"></script>
-    <!-- include local utility functionality -->
-    <script src="SFHybridApp.js"></script>
-    <!-- required for oauth plugin support -->    
-    <script src="SalesforceOAuthPlugin.js"></script>
+  <!-- ========= -->
+  <!--    CSS    -->
+  <!-- ========= -->
+  <link href="resources/css/jquery.mobile-1.3.0.min.css" rel="stylesheet" />
 
-    <!-- include forcetk for REST transaction support -->
-    <script src="forcetk.js"></script>    
+  <!-- ========= -->
+  <!-- Libraries -->
+  <!-- ========= -->
+  <script src="resources/lib/jquery.js" type="text/javascript"></script>
+  <script src="resources/lib/cordova-2.3.0.js"></script>
+  <script src="resources/lib/SFHybridApp.js"></script>
+  <script src="resources/lib/SalesforceOAuthPlugin.js"></script>
+  <script src="resources/lib/lodash.js" type="text/javascript"></script>
+  <script src="resources/lib/backbone.js" type="text/javascript"></script>
+  <script src="resources/lib/forcetk.js" type="text/javascript"></script>
+  <script src="resources/lib/backbone.force.js" type="text/javascript"></script>
+  <script>
+    // Set up the "mobileinit" handler before including jQuery Mobile
+    $(document).on("mobileinit", function() {
+      $.mobile.ajaxEnabled = false;
+      $.mobile.linkBindingEnabled = false;
+    });
+  </script>
+  <script src="resources/lib/jquerymobile.js" type="text/javascript"></script>
 
-    <!-- log window styling -->
-    <style>
-      .logWindow {display:none; width:700px;}
-      .logWindow > p {padding:0px; margin:0px; word-wrap:break-word;}
-    </style>
-
-    <script>
-
-    
-    // The version of the REST API you wish to use in your app.
-    var apiVersion = "v23.0";
-
-	// If you want to prevent dragging, uncomment this section
-	/*
-	function preventBehavior(e) 
-	{ 
-      e.preventDefault(); 
-    };
-	document.addEventListener("touchmove", preventBehavior, false);
-	*/
-	
-	/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-	see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-	for more details -jm */
-	/*
-	function handleOpenURL(url)
-	{
-		// do something with the url passed in.
-	}
-	*/
-	
-    var forcetkClient;
+  <script>
     var debugMode = true;
     var logToConsole = cordova.require("salesforce/util/logger").logToConsole;
+    // The version of the Force.com REST API you wish to use in your app.
+    var apiVersion = "v27.0";
 
+    // Log JS errors to Cordova console
+    window.onerror = function(message, url, lineNumber) {
+      logToConsole("Error: "+message+" in "+url+" at line "+lineNumber);
+    };
+    
     jQuery(document).ready(function() {
-        //Add event listeners and so forth here
-        logToConsole("onLoad: jquery ready");
-		document.addEventListener("deviceready", onDeviceReady,false);
-
+      // Add event listeners and so forth here
+      document.addEventListener("deviceready", onDeviceReady,false);
     });
 
-    // When this function is called, Cordova has been initialized and is ready to roll 
+    // When this function is called, Cordova has been initialized and is ready 
+    // to roll 
     function onDeviceReady() {
-        logToConsole("onDeviceReady: Cordova ready");
-		//Call getAuthCredentials to get the initial session credentials
-        cordova.require("salesforce/plugin/oauth").getAuthCredentials(salesforceSessionRefreshed, getAuthCredentialsError);
+		    // Call getAuthCredentials to get the initial session credentials
+        cordova.require("salesforce/plugin/oauth").getAuthCredentials(
+          salesforceSessionRefreshed, getAuthCredentialsError);
 
-        //register to receive notifications when autoRefreshOnForeground refreshes the sfdc session
-        document.addEventListener("salesforceSessionRefresh",salesforceSessionRefreshed,false);
-
-        //enable buttons
-        regLinkClickHandlers();
+        // Register to receive notifications when autoRefreshOnForeground 
+        // refreshes the sfdc session
+        document.addEventListener("salesforceSessionRefresh",
+          salesforceSessionRefreshed,false);
     }
-        
 
     function salesforceSessionRefreshed(creds) {
-        logToConsole("salesforceSessionRefreshed");
-        
-        // Depending on how we come into this method, `creds` may be callback data from the auth
-        // plugin, or an event fired from the plugin.  The data is different between the two.
-        var credsData = creds;
-        if (creds.data)  // Event sets the `data` object with the auth data.
-            credsData = creds.data;
-
-        forcetkClient = new forcetk.Client(credsData.clientId, credsData.loginUrl);
-        forcetkClient.setSessionToken(credsData.accessToken, apiVersion, credsData.instanceUrl);
-        forcetkClient.setRefreshToken(credsData.refreshToken);
-        forcetkClient.setUserAgentString(credsData.userAgent);
+      // Depending on how we come into this method, `creds` may be callback 
+      // data from the auth plugin, or an event fired from the plugin.  The 
+      // data is different between the two.
+      var credsData = creds;
+      if (creds.data)  // Event sets the `data` object with the auth data.
+        credsData = creds.data;
+      var client = new forcetk.Client(credsData.clientId, credsData.loginUrl);
+      client.setSessionToken(credsData.accessToken, apiVersion, 
+        credsData.instanceUrl);
+      client.setRefreshToken(credsData.refreshToken);
+	    myapp(client);
     }
-
 
     function getAuthCredentialsError(error) {
-        logToConsole("getAuthCredentialsError: " + error);
+      logToConsole("getAuthCredentialsError: " + error);
     }
-        
-    </script>
-        
-	<!-- load our app-specific code -->
-    <script src="inline.js"></script>       
+  </script>
+</head>
+<body>
+  <!-- ========= -->
+  <!-- HTML CODE -->
+  <!-- ========= -->
+  <div id="objects" data-role="page" data-title="Objects">
+    <div data-role="header">
+      <h1>Objects</h1>
+    </div><!-- /header -->
+    <div data-role="content" id="objects-content">
+    </div>
+  </div>
+    
+  <div id="records" data-role="page" data-title="Records">
+    <div data-role="header">
+      <a href='#' id="back" class='ui-btn-left' data-icon='arrow-l'>Back</a>
+      <h1>Capture</h1>
+    </div><!-- /header -->
+    <div data-role="content" id="records-content">
+    </div>
+  </div>
 
-  </head>
-  <body>
-      <div data-role="page" data-theme="b" id="jqm-home"> 
-          <div  data-role="header"> 
-              <h1>Hybrid REST Explorer (SalesforceMobileSDK + Cordova + JQM)</h1> 
-          </div> 
+  <div id="record" data-role="page" data-title="Record">
+    <div data-role="header">
+      <a href='#' id="back" class='ui-btn-left' data-icon='arrow-l'>Back</a>
+		  <h1>Capture</h1>
+    </div><!-- /header -->
+    <div data-role="content" id="record-content">
+    </div>
+  </div>
 
-          <div id="#content" data-role="content"> 
+  <div id="error" data-role="dialog" data-title="Error">
+    <div data-role="header">
+      <h1>Error</h1>
+    </div>
+    <div data-role="content">
+      <p id="errorText"></p>
+      <a href="#" data-role="button" data-rel="back">Close</a>
+    </div>
+  </div>
 
-              <p><a href="#" id="link_fetch_device_contacts" data-role="button" data-inline="true">Fetch Device contacts</a></p>
-              <p><a href="#" id="link_fetch_sfdc_contacts" data-role="button" data-inline="true">Fetch SFDC contacts</a></p>
-              <p><a href="#" id="link_fetch_sfdc_accounts" data-role="button" data-inline="true">Fetch SFDC Accounts</a></p>
-              <p><a href="#" id="link_reset" data-role="button" data-inline="true">Reset</a></p>
+  <div id="success" data-role="dialog" data-title="Success">
+    <div data-role="header">
+      <h1>Success</h1>
+    </div>
+    <div data-role="content">
+      <p id="successText"></p>
+      <a href="#" data-role="button" data-rel="back">Close</a>
+    </div>
+  </div>
 
-              <p><a href="#" id="link_logout" data-role="button" data-inline="true">Logout</a></p>
+  <!-- ========= -->
+  <!-- Templates -->
+  <!-- ========= -->
+  <script type="text/template" id="objects-template">
+    <p>Select an object, then a record, then capture photos, audio or video to post to its Chatter page:</p>
+    <ul data-role="listview" data-inset="true" id="object-list">
+    </ul>
+  </script>
 
-              <div id="div_device_contact_list"></div>
-              <div id="div_sfdc_contact_list"></div>
-              <div id="div_sfdc_account_list"></div>
+  <script type="text/template" id="records-template">
+    <p>Search <b><%= label %></b> records on <b><%= nameField.label %></b> field:</p>
+    <form id="filter-form" action="#">
+      <input type="search" name="filter" id="filter" value="" />
+      <input type="submit" id="search-button" value="Search" />
+    </form>
+    <ul data-role="listview" data-inset="true" id="record-list">
+    </ul>
+  </script>
 
-              <h3>console:</h3>
-              <p id="console" class="logWindow">
-              </p>
-          </div> 
+  <script type="text/template" id="object-template">
+    <a href="#<%= name %>"><%- label %></a>
+  </script>
+    
+  <script type="text/template" id="record-template">
+    <% if (typeof(Id) !== 'undefined') { %>
+      <a href="#<%= type %>-<%= Id %>"><%- Name %></a>
+    <% } else { %>
+      <%- Name %>
+    <% } %>
+  </script>
 
-      </div> 
-  </body>
+  <script type="text/template" id="record-detail-template">
+    <form name="recordform" id="recordform">
+      <p>Capture media and post to Chatter for <%- Name %></p>
+      <h3>Message</h3>
+      <textarea id="message" rows="4"></textarea>
+      <a href="#" class="get_picture" data-role="button">Get Picture</a>
+      <a href="#" class="capture_audio" data-role="button">Capture Audio</a>
+      <a href="#" class="capture_video" data-role="button">Capture Video</a>
+    </form>
+  </script>
+
+  <!-- =============== -->
+  <!-- Javascript code -->
+  <!-- =============== -->
+  <script type="text/javascript">
+    function myapp(client) {
+      Backbone.Force.initialize(client);
+	  
+      var app = {}; // create namespace for our app
+	
+      //--------------
+      // Models
+      //--------------
+      app.Object = Backbone.Force.Model.extend({
+      });
+      
+      app.ContentVersion = Backbone.Force.Model.extend({
+        type:'ContentVersion',
+        fields:['ContentDocumentId']
+      });
+
+      //--------------
+      // Collections
+      //--------------
+      app.ObjectsCollection = Backbone.Force.Collection.extend({
+        model: app.Object,
+        // Override fetch() to get the list of SObjects
+        fetch:function (options) {
+          // Setting options if it wasn't passed to the function
+          options = options ? _.clone(options) : {};
+       
+          // Setting options url property
+          options.url = Backbone.Force._getServiceURL() + '/sobjects/';
+       
+          if (options.parse === undefined) options.parse = true;
+          var collection = this,
+          success = options.success,
+          sobjects = [];
+          options.success = function (resp, status, xhr) {
+            // Adding result to the sobjects array
+            sobjects.push.apply(sobjects, resp.sobjects);
+
+            collection[options.add ? 'add' : 'reset'](collection.parse(sobjects, xhr), options);
+            if (success) success(collection, resp);
+          };
+          options.error = Backbone.wrapError(options.error, collection, options);
+          return this.sync.call(this, 'read', this, options);
+        }
+      });
+      
+      //--------------
+      // Views
+      //--------------
+
+      // renders individual Record list item (li)
+      app.ObjectView = Backbone.View.extend({
+        tagName: 'li',
+        template: _.template($('#object-template').html()),
+        render: function(){
+          this.$el.html(this.template(this.model.toJSON()));
+          return this; // enable chained calls
+        }
+      });
+      
+      // renders individual Record list item (li)
+      app.RecordView = Backbone.View.extend({
+        tagName: 'li',
+        template: _.template($('#record-template').html()),
+        render: function(){
+          // Annotate the record with its type, so we an render it as a link
+          var record = _.extend(this.model.toJSON(), {type: this.model.type});
+          this.$el.html(this.template(record));
+          return this; // enable chained calls
+        }
+      });
+
+      var showError = function(error){
+        $.mobile.loading("hide");
+        var errorText = ((typeof error === 'object') ? JSON.stringify(error) : error);
+        logToConsole(errorText);
+
+        $("#errorText").text(errorText);
+
+        // Don't change the URL hash - we don't want to trigger the router!
+        $.mobile.changePage("#error", { role: "dialog", changeHash: false });
+      }
+      
+      var uploadContent = function(filename, contentType, imageData, recordId){
+        // Create a new ContentVersion and save it
+        // Note that this mechanism is limited to 50 MB of data - to upload
+        // bigger files we would need send binary data in a multipart message
+        // Note - 50MB is about 6 minutes of video
+        var contentVersion = new app.ContentVersion({
+          Origin: 'H',            // 'H' for a Chatter File, 'C' for a Content document
+          PathOnClient: filename, // Hint as to type of data
+          VersionData: imageData
+        });
+        $.mobile.loading('show', {
+          text: 'Uploading '+contentType+' to Chatter Files',
+          textVisible: true,
+        });
+        contentVersion.save(null, {
+          success: function() {
+            // Fetch the ContentVersion record to get the ContentDocumentId
+            $.mobile.loading('show', {
+              text: 'Fetching Document ID',
+              textVisible: true,
+            });
+            contentVersion.fetch({
+              success: function() {
+                logToConsole("Created contentVersion.attributes.ContentDocumentId: "+
+                  contentVersion.attributes.ContentDocumentId);
+                // Post to Chatter feed for Record
+                $.mobile.loading('show', {
+                  text: 'Posting Chatter message',
+                  textVisible: true,
+                });
+                var message = $("#message").val();
+                var body = message ? {
+                    messageSegments : [{
+                      type: 'Text',
+                      text: message
+                    }]
+                } : null;
+                var payload = { 
+                  attachment: {
+                    attachmentType: "ExistingContent",
+                    contentDocumentId: contentVersion.attributes.ContentDocumentId
+                  },
+                  body: body
+                };
+                client.ajax('/'+apiVersion+'/chatter/feeds/record/'+recordId+'/feed-items',
+                  function(){
+                    $.mobile.loading("hide");
+                    $("#successText").text('Posted '+contentType+' successfully');
+                    $.mobile.changePage("#success", { role: "dialog", changeHash: false });
+                  },
+                  showError,
+                  'POST',
+                  JSON.stringify(payload));
+              },
+              error: showError
+            });
+          },
+          error: function(model, xhr, options) {
+            showError('status='+xhr.status+
+              '\nstatusText='+xhr.statusText+
+              '\nresponseText='+xhr.responseText);
+          }
+        });                           
+      };
+      
+      var uploadMediaFile = function(mediaFile, contentType, recordId){
+        var reader = new FileReader();
+        reader.onloadend = function(evt) {
+            logToConsole('Reading '+mediaFile.name+' as data URL');
+            var contentData = evt.target.result.split(',')[1];
+            uploadContent(mediaFile.name, contentType, contentData, recordId);
+        };
+        reader.readAsDataURL(mediaFile);
+      };
+
+      // renders individual Record for editing
+      app.RecordDetailView = Backbone.View.extend({
+        template: _.template($('#record-detail-template').html()),
+        render: function(){
+          this.$el.html(this.template(this.model.toJSON()));
+          return this; // enable chained calls
+        },
+        initCaptureError: function(){
+          this.captureError = {};
+          this.captureError[CaptureError.CAPTURE_INTERNAL_ERR] = 
+          'Camera or microphone failed to capture image or sound.';
+          this.captureError[CaptureError.CAPTURE_APPLICATION_BUSY] = 
+          'Camera application or audio capture application is currently serving other capture request.';
+          this.captureError[CaptureError.CAPTURE_INVALID_ARGUMENT] = 
+          'Invalid use of the API.';
+          this.captureError[CaptureError.CAPTURE_NO_MEDIA_FILES] = 
+          'User exited camera application or audio capture application before capturing anything.';
+          this.captureError[CaptureError.CAPTURE_NOT_SUPPORTED] = 
+          'The requested capture operation is not supported.';
+        },
+        initialize: function(){
+          this.initCaptureError();
+          this.model.on('destroy', this.remove, this);
+          this.render();
+        },
+        events: {
+          'change' : 'change',
+          'click .get_picture' : 'getPicture',
+          'click .capture_audio': 'captureAudio',
+          'click .capture_video': 'captureVideo'
+        },
+        change: function (event) {
+            // Apply the change to the model
+            var target = event.target;
+            var change = {};
+            change[target.name] = target.value;
+            this.model.set(change);
+        },
+        getPicture: function(){
+          self = this;
+          var options = {
+            quality: 50,
+            correctOrientation: true,
+            // Very useful for debugging in the emulator!
+            //sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            destinationType: Camera.DestinationType.DATA_URL
+          };
+          navigator.camera.getPicture(function(imageData) {
+            uploadContent('image.png', 'image', imageData, self.model.attributes.Id);
+          }, function(errorMsg) {
+            showError(errorMsg);
+          }, options);
+          return false;
+        },
+        captureAudio: function(){
+          self = this;
+          navigator.device.capture.captureAudio(function(mediaFiles) {
+            uploadMediaFile(mediaFiles[0], 'audio', self.model.attributes.Id);
+          }, function(error) {
+            showError(self.captureError[error.code]);
+          });
+          return false;
+        },
+        captureVideo: function(){
+          self = this;
+          navigator.device.capture.captureVideo(function(mediaFiles) {
+            uploadMediaFile(mediaFiles[0], 'video', self.model.attributes.Id);
+          }, function(error) {
+            showError(self.captureError[error.code]);
+          });
+          return false;
+        }
+      });
+
+      // renders the full list of Objects calling ObjectView for each one.
+      app.ObjectsView = Backbone.View.extend({
+        template: _.template($('#objects-template').html()),
+        initialize: function() {
+          this.render();
+          this.model.on('add', this.render, this);
+          this.model.on('reset', this.render, this);
+        },
+        renderOne: function(object){
+          var view = new app.ObjectView({model: object});
+          this.$('#object-list').append(view.render().el);
+        },
+        render: function(){
+          this.$el.html(this.template());
+          this.$('#object-list').empty();
+          for (var i = 0, l = this.model.models.length; i < l; i++) {
+            if (this.model.models[i].get("feedEnabled")){
+              this.renderOne(this.model.models[i]);
+            }
+          }
+        },
+        close: function() {
+          logToConsole("IN CLOSE!!!");
+        }
+      });
+
+      // renders the full list of Records calling RecordView for each one.
+      app.RecordsView = Backbone.View.extend({
+        template: _.template($('#records-template').html()),
+        initialize: function() {
+          this.render();
+          this.model.on('add', this.render, this);
+          this.model.on('reset', this.render, this);
+        },
+        renderOne: function(record){
+          if (this.options.nameField.name !== 'Name') {
+            record.set('Name', record.get(this.options.nameField.name));
+          }
+          var view = new app.RecordView({model: record});
+          this.$('#record-list').append(view.render().el);
+        },
+        render: function(){
+          this.$el.html(this.template({
+            label: this.options.label,
+            type: this.options.type, 
+            nameField: this.options.nameField
+          }));
+          this.$('#record-list').empty();
+          for (var i = 0, l = this.model.models.length; i < l; i++) {
+            this.renderOne(this.model.models[i]);
+          }
+        },
+        close: function() {
+          logToConsole("IN CLOSE!!!");
+        }
+      });
+
+      app.RecordModel = null;
+      app.RecordsCollection = null;
+      
+      //Define the Application Router
+      app.Router = Backbone.Router.extend({ 
+        routes: {
+          ":type-:id": "record",
+          ":type?filter=:filter": "object",
+          ":type": "object",
+          "": "objects"
+        },
+        objects: function() {
+          var objectsCollection = new app.ObjectsCollection();
+          $.mobile.loading("show", { text: 'Loading Objects', textVisible: true });
+          objectsCollection.fetch({
+            success: function(){
+              $.mobile.loading("hide");
+              $("#objects-content").html(new app.ObjectsView({model: objectsCollection}).el);
+              $.mobile.changePage("#objects" , { reverse: false, changeHash: false });
+              // Tell jQuery Mobile to annotate the listview
+              $("#objects-content").trigger('create');
+            },
+            error: function(model, response) {
+              logToConsole('ERROR::'+response.responseText);
+            }
+          });
+        },
+        getNameField: function(type, callback) {
+          client.ajax('/'+apiVersion+'/sobjects/'+type+'/describe/',
+            function(response){
+              var done = false;
+              _.each(response.fields, function(field){
+                if (field.nameField) {
+                  callback(response, field);
+                  done = true;
+                }
+              });
+              if (!done) {
+                callback(response, null);
+              }
+            },
+            showError);          
+        },
+        object: function(type, filter) {
+          // Worksaround - for some reason, the router doesn't parse a
+          // missing filter correctly
+          var queryPos = type.indexOf('?');
+          if (queryPos != -1) {
+            type = type.substring(0,queryPos);
+          }
+          this.getNameField(type, function(describe, nameField){
+            app.RecordModel = Backbone.Force.Model.extend({
+              type: type,
+              fields: ['Id',nameField.name]
+            });
+            var whereClause = filter ? "WHERE "+nameField.name+" LIKE '"+filter+"%'" : "WHERE Id != ''";
+            whereClause += " LIMIT 20";
+            app.RecordsCollection = Backbone.Force.Collection.extend({
+              model: app.RecordModel,
+              query: whereClause
+            });
+            var records = new app.RecordsCollection();
+            $.mobile.loading("show", { text: 'Loading records', textVisible: true });
+            records.fetch({
+              success: function(){
+                $.mobile.loading("hide");
+                $("#records-content").html(new app.RecordsView({
+                  model: records,
+                  nameField: nameField,
+                  label: describe.label,
+                  type: type
+                }).el);
+                $.mobile.changePage("#records", { reverse: false, changeHash: false });
+                // Tell jQuery Mobile to annotate the listview
+                $("#records-content").trigger('create');
+                // Activate the search button
+                $('#search-button').on('click', function(event){
+                  event.preventDefault();
+                  var filter = $('#filter').val();
+                  app.router.navigate(type+"?filter="+filter, {trigger: true});
+                });
+              },
+              error: function(model, response) {
+                logToConsole('ERROR::'+response.responseText);
+              }
+            });
+          });
+        },
+        record: function(type,id) {
+          var record = new app.RecordModel({Id: id});
+          $.mobile.loading("show", { text: 'Loading record', textVisible: true });
+          record.fetch({success: function(){
+            $.mobile.loading("hide");
+            $("#record-content").html(new app.RecordDetailView({model: record}).el);
+            $.mobile.changePage("#record" , { reverse: false, changeHash: false });
+            // Tell jQuery Mobile to annotate the page
+            $("#record-content").trigger('create');
+          }});
+        }
+      });
+
+   	  app.router = new app.Router();
+      Backbone.history.start();
+    }
+  </script>
+
+</body>
 </html>
