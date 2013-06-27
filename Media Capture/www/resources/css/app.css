@@ -1,0 +1,1986 @@
+/* line 17, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+@font-face {
+  font-family: "vagRoundedStdLight";
+  src: url('fonts/VAGRoundedStd-Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: "vagRoundedStdBold";
+  src: url('fonts/VAGRoundedStd-Bold.otf') format('opentype');
+}
+
+/* line 218, icons/*.png */
+.icons-sprite, .icons-gray-email, .icons-gray-phone, .icons-map-dot, .icons-menu, .icons-minus, .icons-plus, .icons-right-arrow, .icons-small-tile-email, .icons-small-tile-phone, .icons-tile-camera, .icons-tile-chat, .icons-tile-checkbox, .icons-tile-closeloss, .icons-tile-closewin, .icons-tile-email, .icons-tile-followup, .icons-tile-info, .icons-tile-map, .icons-tile-mapmarker, .icons-tile-note, .icons-tile-notice, .icons-tile-phone, .icons-tile-reload, header #main-menu-button #main-menu-icon, .tile-gray.tile-gray-phone, .tile-gray.tile-gray-email, .detail-view-header .detail-view-action-panel > a.action-note, .detail-view-header .detail-view-action-panel > a.action-map, .detail-view-header .detail-view-action-panel > a.action-closewin, .detail-view-header .detail-view-action-panel > a.action-closeloss {
+  background: url('images/icons-sf64a5a2165.png') no-repeat;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-gray-email {
+  background-position: 0 -1295px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-gray-phone {
+  background-position: 0 -1645px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-map-dot {
+  background-position: 0 -600px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-menu {
+  background-position: 0 -1802px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-minus {
+  background-position: 0 -1595px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-plus {
+  background-position: 0 -1695px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-right-arrow {
+  background-position: 0 -1745px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-small-tile-email {
+  background-position: 0 -1345px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-small-tile-phone {
+  background-position: 0 -1145px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-camera {
+  background-position: 0 -945px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-chat {
+  background-position: 0 -1495px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-checkbox {
+  background-position: 0 -200px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-closeloss {
+  background-position: 0 -400px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-closewin {
+  background-position: 0 -1045px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-email {
+  background-position: 0 -745px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-followup {
+  background-position: 0 -1395px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-info {
+  background-position: 0 -1195px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-map {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-mapmarker {
+  background-position: 0 -100px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-note {
+  background-position: 0 -300px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-notice {
+  background-position: 0 -645px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-phone {
+  background-position: 0 -845px;
+}
+
+/* line 60, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-tile-reload {
+  background-position: 0 -500px;
+}
+
+/* line 1, sass/_global.sass */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 3, sass/_global.sass */
+html, body {
+  font-family: "Helvetica", sans-serif;
+  font-size: 30px;
+  color: #666666;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* line 9, sass/_global.sass */
+strong {
+  font-weight: bolder;
+}
+
+/* line 11, sass/_global.sass */
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: black;
+}
+/* line 15, sass/_global.sass */
+h1.inline {
+  display: inline;
+}
+
+/* line 17, sass/_global.sass */
+h2 {
+  font-size: 40px;
+  padding-bottom: 10px;
+  color: black;
+}
+
+/* line 21, sass/_global.sass */
+h3 {
+  font-weight: bolder;
+  text-transform: uppercase;
+  font-size: 24px;
+  padding-bottom: 30px;
+  color: black;
+}
+
+/* line 27, sass/_global.sass */
+a {
+  color: #666666;
+  text-decoration: none;
+}
+
+/* line 30, sass/_global.sass */
+p {
+  line-height: 38px;
+  padding-bottom: 15px;
+}
+/* line 33, sass/_global.sass */
+p a {
+  color: #7ba8b0;
+}
+
+/* line 35, sass/_global.sass */
+#app-wrapper {
+  -webkit-transition-property: left;
+  -moz-transition-property: left;
+  -o-transition-property: left;
+  transition-property: left;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-timing-function: linear;
+  display: block;
+  position: absolute;
+  height: auto;
+  min-height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+}
+/* line 46, sass/_global.sass */
+#app-wrapper.menu-open {
+  left: 500px;
+}
+
+/* line 48, sass/_global.sass */
+#app-content {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 110px;
+  z-index: 1;
+}
+
+/* line 56, sass/_global.sass */
+header {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  background: #78a5ad;
+  z-index: 10;
+}
+/* line 65, sass/_global.sass */
+header #main-menu-button {
+  display: block;
+  position: relative;
+  float: left;
+  width: 110px;
+  height: 110px;
+  padding: 30px;
+  z-index: 2;
+}
+/* line 73, sass/_global.sass */
+header #main-menu-button #main-menu-icon {
+  background-position: 0 -1802px;
+  display: block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+/* line 79, sass/_global.sass */
+header h1 {
+  color: #e6f0f1;
+  display: block;
+  position: absolute;
+  top: 31px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+}
+
+/* line 89, sass/_global.sass */
+nav#main-menu {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -500px;
+  width: 500px;
+  height: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #597f86;
+  z-index: 9;
+}
+/* line 100, sass/_global.sass */
+nav#main-menu a {
+  display: block;
+  position: relative;
+  width: 100%;
+  font-size: 48px;
+  color: white;
+  text-decoration: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dotted white;
+}
+/* line 110, sass/_global.sass */
+nav#main-menu a:last-child {
+  border-bottom: none;
+}
+
+/* line 112, sass/_global.sass */
+section {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 30px;
+  padding-bottom: 0;
+}
+/* line 119, sass/_global.sass */
+section .content {
+  line-height: 38px;
+  padding: 15px;
+  padding-top: 30px;
+  padding-bottom: 0;
+}
+/* line 124, sass/_global.sass */
+section.border-top .content {
+  border-top: 1px dotted #e0e0e0;
+}
+/* line 126, sass/_global.sass */
+section.border-bottom .content {
+  border-bottom: 1px dotted #e0e0e0;
+}
+
+/* line 128, sass/_global.sass */
+.hide {
+  display: none;
+}
+
+/* line 130, sass/_global.sass */
+.show {
+  display: block;
+}
+
+/* line 136, sass/_global.sass */
+.span-33 {
+  display: block;
+  position: relative;
+  float: left;
+  width: 33.33333%;
+}
+
+/* line 139, sass/_global.sass */
+.span-66 {
+  display: block;
+  position: relative;
+  float: left;
+  width: 66.66667%;
+}
+
+/* line 142, sass/_global.sass */
+.span-25 {
+  display: block;
+  position: relative;
+  float: left;
+  width: 25%;
+}
+
+/* line 145, sass/_global.sass */
+.span-50 {
+  display: block;
+  position: relative;
+  float: left;
+  width: 50%;
+}
+
+/* line 148, sass/_global.sass */
+.span-75 {
+  display: block;
+  position: relative;
+  float: left;
+  width: 75%;
+}
+
+/* line 151, sass/_global.sass */
+.top-gutter-half-padding {
+  padding-top: 15px;
+}
+
+/* line 153, sass/_global.sass */
+.right-gutter-half-padding {
+  padding-right: 15px;
+}
+
+/* line 155, sass/_global.sass */
+.bottom-gutter-half-padding {
+  padding-bottom: 15px;
+}
+
+/* line 157, sass/_global.sass */
+.left-gutter-half-padding {
+  padding-left: 15px;
+}
+
+/* line 159, sass/_global.sass */
+.top-gutter-padding {
+  padding-top: 30px;
+}
+
+/* line 161, sass/_global.sass */
+.right-gutter-padding {
+  padding-right: 30px;
+}
+
+/* line 163, sass/_global.sass */
+.bottom-gutter-padding {
+  padding-bottom: 30px;
+}
+
+/* line 165, sass/_global.sass */
+.left-gutter-padding {
+  padding-left: 30px;
+}
+
+/* line 167, sass/_global.sass */
+.tile-gray {
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 0;
+  left: 0;
+}
+/* line 174, sass/_global.sass */
+.tile-gray.tile-gray-phone {
+  background-position: 0 -1645px;
+}
+/* line 176, sass/_global.sass */
+.tile-gray.tile-gray-email {
+  background-position: 0 -1295px;
+}
+
+/* line 1, sass/_list_view.sass */
+.list-view-header {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 20px;
+  line-height: 40px;
+  height: 40px;
+  color: black;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: #e6f0f1;
+}
+/* line 14, sass/_list_view.sass */
+.list-view-header:first-child {
+  margin-top: 0;
+}
+
+/* line 16, sass/_list_view.sass */
+div#tabbed-list-view-nav {
+  display: block;
+  position: relative;
+  height: 70px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+/* line 22, sass/_list_view.sass */
+div#tabbed-list-view-nav a {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  line-height: 70px;
+  background: black;
+  color: #666666;
+  text-transform: uppercase;
+  text-align: center;
+}
+/* line 31, sass/_list_view.sass */
+div#tabbed-list-view-nav a.on {
+  color: white;
+}
+/* line 33, sass/_list_view.sass */
+div#tabbed-list-view-nav #tabbed-list-view-nav-arrow {
+  display: block;
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 15px 15px 0 15px;
+  border-color: black transparent transparent transparent;
+  margin-left: -15px;
+}
+
+/* line 44, sass/_list_view.sass */
+ul#tabbed-list-view {
+  -webkit-transition-property: left;
+  -moz-transition-property: left;
+  -o-transition-property: left;
+  transition-property: left;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-timing-function: linear;
+  display: block;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: 5;
+}
+/* line 56, sass/_list_view.sass */
+ul#tabbed-list-view > li {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* line 64, sass/_list_view.sass */
+ul#tabbed-list-view.slide-1 {
+  left: -100%;
+}
+/* line 64, sass/_list_view.sass */
+ul#tabbed-list-view.slide-2 {
+  left: -200%;
+}
+/* line 64, sass/_list_view.sass */
+ul#tabbed-list-view.slide-3 {
+  left: -300%;
+}
+/* line 64, sass/_list_view.sass */
+ul#tabbed-list-view.slide-4 {
+  left: -400%;
+}
+/* line 64, sass/_list_view.sass */
+ul#tabbed-list-view.slide-5 {
+  left: -500%;
+}
+/* line 64, sass/_list_view.sass */
+ul#tabbed-list-view.slide-6 {
+  left: -600%;
+}
+/* line 64, sass/_list_view.sass */
+ul#tabbed-list-view.slide-7 {
+  left: -700%;
+}
+/* line 64, sass/_list_view.sass */
+ul#tabbed-list-view.slide-8 {
+  left: -800%;
+}
+
+/* line 66, sass/_list_view.sass */
+ul.list-view {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+/* line 72, sass/_list_view.sass */
+ul.list-view li {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  border-bottom: 1px dotted #cccccc;
+}
+/* line 79, sass/_list_view.sass */
+ul.list-view li:last-child {
+  border-bottom: none;
+}
+/* line 81, sass/_list_view.sass */
+ul.list-view li .content {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 57px;
+  text-decoration: none;
+}
+/* line 88, sass/_list_view.sass */
+ul.list-view li .content .thumb {
+  display: block;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 0;
+}
+/* line 95, sass/_list_view.sass */
+ul.list-view.large-padding > li {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+/* line 98, sass/_list_view.sass */
+ul.list-view.left-thumbs > li > .content {
+  min-height: 100px;
+  padding-left: 130px;
+}
+/* line 101, sass/_list_view.sass */
+ul.list-view.right-one-icons > li > .content {
+  padding-right: 55px;
+}
+/* line 103, sass/_list_view.sass */
+ul.list-view.right-two-icons > li > .content {
+  padding-right: 95px;
+}
+/* line 105, sass/_list_view.sass */
+ul.list-view.right-three-icons > li > .content {
+  padding-right: 135px;
+}
+
+/* line 107, sass/_list_view.sass */
+ul.collapsable > li > ul {
+  display: none;
+  padding-right: 0;
+  padding-left: 115px;
+}
+/* line 111, sass/_list_view.sass */
+ul.collapsable > li > ul > li {
+  padding-right: 0;
+}
+
+/* line 113, sass/_list_view.sass */
+.list-view-icons {
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+/* line 119, sass/_list_view.sass */
+.list-view-icons > span {
+  display: block;
+  position: relative;
+  float: left;
+  height: 100%;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+/* line 126, sass/_list_view.sass */
+.list-view-icons > .icon-right-arrow {
+  width: 39px;
+  background-image: url(images/icons/right-arrow.png);
+}
+/* line 129, sass/_list_view.sass */
+.list-view-icons > .icon-plus {
+  width: 50px;
+  background-image: url(images/icons/plus.png);
+}
+/* line 132, sass/_list_view.sass */
+.list-view-icons > .icon-minus {
+  width: 50px;
+  background-image: url(images/icons/minus.png);
+}
+/* line 135, sass/_list_view.sass */
+.list-view-icons > .icon-map-dot {
+  display: none;
+  width: 45px;
+  background-image: url(images/icons/map-dot.png);
+}
+
+/* line 139, sass/_list_view.sass */
+.list-view-actions {
+  display: block;
+  position: relative;
+  top: -5px;
+  float: right;
+  width: 50px;
+  height: 100%;
+}
+/* line 146, sass/_list_view.sass */
+.list-view-actions > span {
+  display: block;
+  position: relative;
+  float: left;
+  width: 50px;
+  height: 50px;
+  background-position: top left;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+/* line 155, sass/_list_view.sass */
+.list-view-actions > .action-phone {
+  background-image: url(images/icons/small-tile-phone.png);
+}
+/* line 157, sass/_list_view.sass */
+.list-view-actions > .action-email {
+  background-image: url(images/icons/small-tile-email.png);
+}
+
+/* line 1, sass/_detail_view.sass */
+.detail-view-header {
+  display: block;
+  position: relative;
+  width: 100%;
+  background-color: #e6f0f1;
+  color: black;
+}
+/* line 7, sass/_detail_view.sass */
+.detail-view-header .content {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 190px;
+  padding: 45px;
+  padding-left: 45px;
+  padding-right: 145px;
+}
+/* line 15, sass/_detail_view.sass */
+.detail-view-header .content .thumb {
+  display: block;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 45px;
+  left: 45px;
+}
+/* line 22, sass/_detail_view.sass */
+.detail-view-header.left-thumb .content {
+  padding-left: 160px;
+}
+/* line 24, sass/_detail_view.sass */
+.detail-view-header .detail-view-action-panel {
+  overflow: hidden;
+  *zoom: 1;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 104px;
+  background-color: white;
+  padding: 2px;
+  padding-bottom: 0;
+  z-index: 5;
+}
+/* line 35, sass/_detail_view.sass */
+.detail-view-header .detail-view-action-panel > a {
+  display: block;
+  position: relative;
+  margin-bottom: 2px;
+  width: 100px;
+  height: 100px;
+}
+/* line 41, sass/_detail_view.sass */
+.detail-view-header .detail-view-action-panel > a.action-note {
+  background-position: 0 -300px;
+}
+/* line 43, sass/_detail_view.sass */
+.detail-view-header .detail-view-action-panel > a.action-map {
+  background-position: 0 0;
+}
+/* line 45, sass/_detail_view.sass */
+.detail-view-header .detail-view-action-panel > a.action-closewin {
+  background-position: 0 -1045px;
+}
+/* line 47, sass/_detail_view.sass */
+.detail-view-header .detail-view-action-panel > a.action-closeloss {
+  background-position: 0 -400px;
+}
+
+/* line 49, sass/_detail_view.sass */
+.detail-view-table-row {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 15px;
+}
+/* line 54, sass/_detail_view.sass */
+.detail-view-table-row .detail-view-table-left-column {
+  display: block;
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 130px;
+}
+/* line 60, sass/_detail_view.sass */
+.detail-view-table-row.left-column-tile-gray .detail-view-table-left-column {
+  width: 80px;
+}
+/* line 62, sass/_detail_view.sass */
+.detail-view-table-row .detail-view-table-right-column {
+  display: block;
+  position: relative;
+  padding-left: 130px;
+}
+/* line 66, sass/_detail_view.sass */
+.detail-view-table-row.left-column-tile-gray .detail-view-table-right-column {
+  padding-left: 80px;
+}
+
+/* line 68, sass/_detail_view.sass */
+section.opportunity-overview {
+  height: 210px;
+  padding-top: 30px;
+}
+/* line 71, sass/_detail_view.sass */
+section.opportunity-overview h1 {
+  font-size: 100px;
+  line-height: 100px;
+}
+
+/* line 1, sass/_form_elements.sass */
+.progress-dotted {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 65px;
+  margin-bottom: 30px;
+}
+/* line 7, sass/_form_elements.sass */
+.progress-dotted .progress-dotted-bg {
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #dddddd;
+  z-index: 1;
+}
+/* line 16, sass/_form_elements.sass */
+.progress-dotted .progress-dotted-label {
+  display: block;
+  position: absolute;
+  top: 35px;
+}
+/* line 20, sass/_form_elements.sass */
+.progress-dotted ul {
+  display: block;
+  position: relative;
+  height: 20px;
+  width: 100%;
+  z-index: 2;
+}
+/* line 26, sass/_form_elements.sass */
+.progress-dotted ul li {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  overflow: visible;
+  background-color: #dddddd;
+}
+/* line 36, sass/_form_elements.sass */
+.progress-dotted ul li.on {
+  background-color: black;
+}
+
+/* line 38, sass/_form_elements.sass */
+.progress-bar {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background: #cccccc;
+  margin-bottom: 30px;
+}
+
+/* line 45, sass/_form_elements.sass */
+.progress-bar-fill-black {
+  background-color: black;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-1 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 1%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-2 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 2%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-3 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 3%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-4 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 4%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-5 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 5%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-6 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 6%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-7 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 7%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-8 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 8%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-9 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 9%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-10 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 10%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-11 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 11%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-12 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 12%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-13 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 13%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-14 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 14%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-15 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 15%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-16 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 16%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-17 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 17%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-18 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 18%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-19 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 19%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-20 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-21 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 21%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-22 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 22%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-23 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 23%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-24 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 24%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-25 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 25%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-26 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 26%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-27 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 27%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-28 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 28%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-29 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 29%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-30 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 30%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-31 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 31%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-32 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 32%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-33 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 33%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-34 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 34%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-35 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 35%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-36 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 36%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-37 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 37%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-38 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 38%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-39 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 39%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-40 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 40%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-41 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 41%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-42 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 42%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-43 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 43%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-44 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 44%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-45 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 45%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-46 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 46%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-47 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 47%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-48 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 48%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-49 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 49%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-50 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 50%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-51 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 51%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-52 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 52%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-53 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 53%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-54 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 54%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-55 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 55%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-56 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 56%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-57 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 57%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-58 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 58%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-59 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 59%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-60 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 60%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-61 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 61%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-62 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 62%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-63 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 63%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-64 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 64%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-65 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 65%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-66 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 66%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-67 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 67%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-68 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 68%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-69 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 69%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-70 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 70%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-71 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 71%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-72 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 72%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-73 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 73%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-74 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 74%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-75 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 75%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-76 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 76%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-77 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 77%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-78 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 78%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-79 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 79%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-80 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 80%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-81 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 81%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-82 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 82%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-83 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 83%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-84 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 84%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-85 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 85%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-86 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 86%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-87 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 87%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-88 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 88%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-89 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 89%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-90 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 90%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-91 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 91%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-92 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 92%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-93 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 93%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-94 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 94%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-95 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 95%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-96 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 96%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-97 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 97%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-98 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 98%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-99 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 99%;
+}
+
+/* line 48, sass/_form_elements.sass */
+.progress-bar-fill-100 {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 100%;
+}
+
+/* line 1, sass/_map.sass */
+#map-canvas-wrapper, #map-canvas {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 8;
+}
+
+/* line 7, sass/_map.sass */
+#map-canvas-wrapper.map-canvas-wrapper-list-view {
+  display: block;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 300px;
+}
+
+/* line 14, sass/_map.sass */
+.infowindow-container {
+  display: block;
+  position: relative;
+  width: 350px;
+}
+/* line 18, sass/_map.sass */
+.infowindow-container p {
+  font-size: 16px;
+  line-height: 19px;
+  padding-bottom: 0;
+}
+/* line 22, sass/_map.sass */
+.infowindow-container p strong {
+  font-size: 14px;
+  padding-bottom: 15px;
+}
+
+/* line 1, sass/_global_overides.sass */
+.no-bottom-padding {
+  padding-bottom: 0;
+}

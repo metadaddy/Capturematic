@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=0.5,  minimum-scale=0.5, maximum-scale=0.5">
   <title>Media Capture</title>
 
   <!-- ========= -->
   <!--    CSS    -->
   <!-- ========= -->
-  <link href="resources/css/jquery.mobile-1.3.0.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="resources/css/app.css">
+  <link rel="stylesheet" href="resources/css/style.css">
 
   <!-- ========= -->
   <!-- Libraries -->
   <!-- ========= -->
+  <script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
   <script src="resources/lib/jquery.js" type="text/javascript"></script>
   <script src="resources/lib/cordova-2.3.0.js"></script>
   <script src="resources/lib/SFHybridApp.js"></script>
@@ -22,14 +24,7 @@
   <script src="resources/lib/backbone.js" type="text/javascript"></script>
   <script src="resources/lib/forcetk.js" type="text/javascript"></script>
   <script src="resources/lib/backbone.force.js" type="text/javascript"></script>
-  <script>
-    // Set up the "mobileinit" handler before including jQuery Mobile
-    $(document).on("mobileinit", function() {
-      $.mobile.ajaxEnabled = false;
-      $.mobile.linkBindingEnabled = false;
-    });
-  </script>
-  <script src="resources/lib/jquerymobile.js" type="text/javascript"></script>
+  <script src="resources/lib/main.js"></script>
 
   <script>
     var logToConsole = cordova.require("salesforce/util/logger").logToConsole;
@@ -49,14 +44,14 @@
     // When this function is called, Cordova has been initialized and is ready 
     // to roll 
     function onDeviceReady() {
-		    // Call getAuthCredentials to get the initial session credentials
-        cordova.require("salesforce/plugin/oauth").getAuthCredentials(
-          salesforceSessionRefreshed, getAuthCredentialsError);
+	    // Call getAuthCredentials to get the initial session credentials
+      cordova.require("salesforce/plugin/oauth").getAuthCredentials(
+        salesforceSessionRefreshed, getAuthCredentialsError);
 
-        // Register to receive notifications when autoRefreshOnForeground 
-        // refreshes the sfdc session
-        document.addEventListener("salesforceSessionRefresh",
-          salesforceSessionRefreshed,false);
+      // Register to receive notifications when autoRefreshOnForeground 
+      // refreshes the sfdc session
+      document.addEventListener("salesforceSessionRefresh",
+        salesforceSessionRefreshed,false);
     }
 
     function salesforceSessionRefreshed(creds) {
@@ -82,92 +77,83 @@
   <!-- ========= -->
   <!-- HTML CODE -->
   <!-- ========= -->
-  <div id="objects" data-role="page" data-title="Objects">
-    <div data-role="header">
-      <h1>Objects</h1>
-    </div><!-- /header -->
-    <div data-role="content" id="objects-content">
-    </div>
-  </div>
-    
-  <div id="records" data-role="page" data-title="Records">
-    <div data-role="header">
-      <a href='#' id="back" class='ui-btn-left' data-icon='arrow-l'>Back</a>
-      <h1>Capture</h1>
-    </div><!-- /header -->
-    <div data-role="content" id="records-content">
-    </div>
-  </div>
-
-  <div id="record" data-role="page" data-title="Record">
-    <div data-role="header">
-      <a href='#' id="back" class='ui-btn-left' data-icon='arrow-l'>Back</a>
-		  <h1>Capture</h1>
-    </div><!-- /header -->
-    <div data-role="content" id="record-content">
-    </div>
-  </div>
-
-  <div id="error" data-role="dialog" data-title="Error">
-    <div data-role="header">
-      <h1>Error</h1>
-    </div>
-    <div data-role="content">
-      <p id="errorText"></p>
-      <a href="#" data-role="button" data-rel="back">Close</a>
-    </div>
-  </div>
-
-  <div id="success" data-role="dialog" data-title="Success">
-    <div data-role="header">
-      <h1>Success</h1>
-    </div>
-    <div data-role="content">
-      <p id="successText"></p>
-      <a href="#" data-role="button" data-rel="back">Close</a>
-    </div>
+  <div id="app-wrapper">
   </div>
 
   <!-- ========= -->
   <!-- Templates -->
   <!-- ========= -->
   <script type="text/template" id="objects-template">
-    <p>Select an object, then a record, then capture photos, audio or video to post to its Chatter page:</p>
-    <ul data-role="listview" data-inset="true" id="object-list">
-    </ul>
+    <header>
+      <h1>Objects</h1>
+    </header>
+    <div id="app-content">
+      <p>Select an object, then a record, then capture photos, audio or video to post to its Chatter page:</p>
+      <ul id="object-list" class="list-view right-one-icons">
+      </ul>
+    </div>
   </script>
 
   <script type="text/template" id="records-template">
-    <p>Search <b><%= label %></b> records on <b><%= nameField.label %></b> field:</p>
-    <form id="filter-form" action="#">
-      <input type="search" name="filter" id="filter" value="" />
-      <input type="submit" id="search-button" value="Search" />
-    </form>
-    <ul data-role="listview" data-inset="true" id="record-list">
-    </ul>
+    <header>
+      <div class="back-button"><span class="back-icon">&nbsp;</span></div>
+      <h1>Records</h1>
+    </header>
+    <div id="app-content">
+      <p>Search <b><%= label %></b> records on <b><%= nameField.label %></b> field:</p>
+      <form id="filter-form" action="#">
+        <input type="search" name="filter" id="filter" value="" />
+        <input type="submit" id="search-button" value="Search" />
+      </form>
+      <ul id="record-list" class="list-view right-one-icons">
+      </ul>
+    </div>
   </script>
 
   <script type="text/template" id="object-template">
-    <a href="#<%= name %>"><%- label %></a>
+    <a href="#<%= name %>" class="content">
+      <h2><%- label %></h2>
+    </a>
+    <div class="list-view-icons">
+      <span class="icon-right-arrow">&nbsp;</span>
+    </div>
   </script>
     
   <script type="text/template" id="record-template">
     <% if (typeof(Id) !== 'undefined') { %>
-      <a href="#<%= type %>-<%= Id %>"><%- Name %></a>
+      <a href="#<%= type %>-<%= Id %>" class="content">
+        <h2><%- Name %></h2>
+      </a>
     <% } else { %>
-      <%- Name %>
+      <h2><%- Name %></h2>
     <% } %>
+    <div class="list-view-icons">
+      <span class="icon-right-arrow">&nbsp;</span>
+    </div>
   </script>
 
   <script type="text/template" id="record-detail-template">
-    <form name="recordform" id="recordform">
-      <p>Capture media and post to Chatter for <%- Name %></p>
-      <h3>Message</h3>
-      <textarea id="message" rows="4"></textarea>
-      <a href="#" class="get_picture" data-role="button">Get Picture</a>
-      <a href="#" class="capture_audio" data-role="button">Capture Audio</a>
-      <a href="#" class="capture_video" data-role="button">Capture Video</a>
-    </form>
+    <header>
+      <div class="back-button"><span class="back-icon">&nbsp;</span></div>
+      <h1>Capture</h1>
+    </header>
+    <div id="app-content">
+      <div class="detail-view-header">
+        <div class="content">
+          <h1><%- Name %></h1>
+          <div class="detail-view-action-panel">
+            <a href="#" class="action-note get_picture">&nbsp;</a>
+            <a href="#" class="action-map capture_audio">&nbsp;</a>
+            <a href="#" class="action-note capture_video">&nbsp;</a>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <p>Capture media and post to Chatter for <%- Name %></p>
+        <h2>Message</h2>
+        <textarea id="message" rows="4"></textarea>
+      </content>
+    </div>
   </script>
 
   <!-- =============== -->
@@ -175,6 +161,7 @@
   <!-- =============== -->
   <script type="text/javascript">
     function myapp(client) {
+      logToConsole('Starting app');
       Backbone.Force.initialize(client);
 	  
       var app = {}; // create namespace for our app
@@ -238,7 +225,7 @@
         tagName: 'li',
         template: _.template($('#record-template').html()),
         render: function(){
-          // Annotate the record with its type, so we an render it as a link
+          // Annotate the record with its type, so we can render it as a link
           var record = _.extend(this.model.toJSON(), {type: this.model.type});
           this.$el.html(this.template(record));
           return this; // enable chained calls
@@ -246,14 +233,10 @@
       });
 
       var showError = function(error){
-        $.mobile.loading("hide");
         var errorText = ((typeof error === 'object') ? JSON.stringify(error) : error);
         logToConsole(errorText);
 
-        $("#errorText").text(errorText);
-
-        // Don't change the URL hash - we don't want to trigger the router!
-        $.mobile.changePage("#error", { role: "dialog", changeHash: false });
+        navigator.notification.alert(errorText, undefined, 'Error');
       }
       
       var uploadContent = function(filename, contentType, imageData, recordId){
@@ -266,26 +249,26 @@
           PathOnClient: filename, // Hint as to type of data
           VersionData: imageData
         });
-        $.mobile.loading('show', {
-          text: 'Uploading '+contentType+' to Chatter Files',
-          textVisible: true,
-        });
+        // $.mobile.loading('show', {
+        //   text: 'Uploading '+contentType+' to Chatter Files',
+        //   textVisible: true,
+        // });
         contentVersion.save(null, {
           success: function() {
             // Fetch the ContentVersion record to get the ContentDocumentId
-            $.mobile.loading('show', {
-              text: 'Fetching Document ID',
-              textVisible: true,
-            });
+            // $.mobile.loading('show', {
+            //   text: 'Fetching Document ID',
+            //   textVisible: true,
+            // });
             contentVersion.fetch({
               success: function() {
                 logToConsole("Created contentVersion.attributes.ContentDocumentId: "+
                   contentVersion.attributes.ContentDocumentId);
                 // Post to Chatter feed for Record
-                $.mobile.loading('show', {
-                  text: 'Posting Chatter message',
-                  textVisible: true,
-                });
+                // $.mobile.loading('show', {
+                //   text: 'Posting Chatter message',
+                //   textVisible: true,
+                // });
                 var message = $("#message").val();
                 var body = message ? {
                     messageSegments : [{
@@ -302,9 +285,9 @@
                 };
                 client.ajax('/'+apiVersion+'/chatter/feeds/record/'+recordId+'/feed-items',
                   function(){
-                    $.mobile.loading("hide");
-                    $("#successText").text('Posted '+contentType+' successfully');
-                    $.mobile.changePage("#success", { role: "dialog", changeHash: false });
+                    // $.mobile.loading("hide");
+                    navigator.notification.alert('Posted '+contentType+' successfully', undefined, 'Success');
+                    // $.mobile.changePage("#success", { role: "dialog", changeHash: false });
                   },
                   showError,
                   'POST',
@@ -335,7 +318,9 @@
       app.RecordDetailView = Backbone.View.extend({
         template: _.template($('#record-detail-template').html()),
         render: function(){
-          this.$el.html(this.template(this.model.toJSON()));
+          // Annotate the record with its type, so we can render the link
+          var record = _.extend(this.model.toJSON(), {type: this.model.type});
+          this.$el.html(this.template(record));
           return this; // enable chained calls
         },
         initCaptureError: function(){
@@ -474,16 +459,24 @@
           ":type": "object",
           "": "objects"
         },
+        initialize: function() {
+          // Keep track of the history of pages (we only store the page URL). Used to identify the direction
+          // (left or right) of the sliding transition between pages.
+          this.pageHistory = [];
+
+          // Register event listener for back button throughout the app
+          $('#app-wrapper').on('click', '.back-button', function(event) {
+              window.history.back();
+              return false;
+          });
+        },
         objects: function() {
-          var objectsCollection = new app.ObjectsCollection();
-          $.mobile.loading("show", { text: 'Loading Objects', textVisible: true });
+          var objectsCollection = new app.ObjectsCollection(),
+            self = this;
           objectsCollection.fetch({
             success: function(){
-              $.mobile.loading("hide");
-              $("#objects-content").html(new app.ObjectsView({model: objectsCollection}).el);
-              $.mobile.changePage("#objects" , { reverse: false, changeHash: false });
-              // Tell jQuery Mobile to annotate the listview
-              $("#objects-content").trigger('create');
+              logToConsole('AAA');
+              self.slidePage(new app.ObjectsView({model: objectsCollection}));
             },
             error: function(model, response) {
               logToConsole('ERROR::'+response.responseText);
@@ -507,6 +500,8 @@
             showError);          
         },
         object: function(type, filter) {
+          var self = this;
+
           // Worksaround - for some reason, the router doesn't parse a
           // missing filter correctly
           var queryPos = type.indexOf('?');
@@ -525,19 +520,14 @@
               query: whereClause
             });
             var records = new app.RecordsCollection();
-            $.mobile.loading("show", { text: 'Loading records', textVisible: true });
             records.fetch({
               success: function(){
-                $.mobile.loading("hide");
-                $("#records-content").html(new app.RecordsView({
+                self.slidePage(new app.RecordsView({
                   model: records,
                   nameField: nameField,
                   label: describe.label,
                   type: type
-                }).el);
-                $.mobile.changePage("#records", { reverse: false, changeHash: false });
-                // Tell jQuery Mobile to annotate the listview
-                $("#records-content").trigger('create');
+                }));
                 // Activate the search button
                 $('#search-button').on('click', function(event){
                   event.preventDefault();
@@ -552,15 +542,61 @@
           });
         },
         record: function(type,id) {
-          var record = new app.RecordModel({Id: id});
-          $.mobile.loading("show", { text: 'Loading record', textVisible: true });
+          var record = new app.RecordModel({Id: id}),
+            self = this;
           record.fetch({success: function(){
-            $.mobile.loading("hide");
-            $("#record-content").html(new app.RecordDetailView({model: record}).el);
-            $.mobile.changePage("#record" , { reverse: false, changeHash: false });
-            // Tell jQuery Mobile to annotate the page
-            $("#record-content").trigger('create');
+            self.slidePage(new app.RecordDetailView({
+              model: record,
+              type: type
+            }));
           }});
+        },
+        slidePage: function(page) {
+          var slideFrom,
+            self = this;
+
+          if (!this.currentPage) {
+            logToConsole('BBB');
+            // If there is no current page (app just started) -> No transition: Position new page in the view port
+            $(page.el).attr('class', 'page stage-center');
+            logToConsole(page.el);
+            $('#app-wrapper').append(page.el);
+            this.pageHistory = [window.location.hash];
+            this.currentPage = page;
+            return;
+          }
+
+          // Cleaning up: remove old pages that were moved out of the viewport
+          $('.stage-right, .stage-left').not('#searchPage').remove();
+
+          if (page === this.searchPage) {
+            // Always apply a Back (slide from left) transition when we go back to the search page
+            slideFrom = "left";
+            $(page.el).attr('class', 'page stage-left');
+            // Reinitialize page history
+            this.pageHistory = [window.location.hash];
+          } else if (this.pageHistory.length > 1 && window.location.hash === this.pageHistory[this.pageHistory.length - 2]) {
+            // The new page is the same as the previous page -> Back transition
+            slideFrom = "left";
+            $(page.el).attr('class', 'page stage-left');
+            this.pageHistory.pop();
+          } else {
+            // Forward transition (slide from right)
+            slideFrom = "right";
+            $(page.el).attr('class', 'page stage-right');
+            this.pageHistory.push(window.location.hash);
+          }
+
+          $('#app-wrapper').append(page.el);
+
+          // Wait until the new page has been added to the DOM...
+          setTimeout(function() {
+              // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
+              $(self.currentPage.el).attr('class', 'page transition ' + (slideFrom === "right" ? 'stage-left' : 'stage-right'));
+              // Slide in the new page
+              $(page.el).attr('class', 'page stage-center transition');
+              self.currentPage = page;
+          });
         }
       });
 

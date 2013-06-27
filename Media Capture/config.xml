@@ -25,7 +25,7 @@
     <preference name="UIWebViewBounce" value="true" />
     <preference name="TopActivityIndicator" value="gray" />
     <preference name="EnableLocation" value="false" />
-    <preference name="EnableViewportScale" value="false" />
+    <preference name="EnableViewportScale" value="true" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="ShowSplashScreenSpinner" value="true" />
     <preference name="MediaPlaybackRequiresUserAction" value="false" />
@@ -60,4 +60,5 @@
 
     <access origin="*.force.com" />
     <access origin="*.salesforce.com" />
+    <access origin="localhost" />
 </cordova>

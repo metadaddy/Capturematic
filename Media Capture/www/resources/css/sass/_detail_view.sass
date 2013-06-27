@@ -1,0 +1,74 @@
+.detail-view-header
+	display: block
+	position: relative
+	width: 100%
+	background-color: $section-header-blue
+	color: #000
+	.content
+		display: block
+		position: relative
+		width: 100%
+		min-height: $left-thumb-size + 2 * $gutter-one-and-half
+		padding: $gutter-one-and-half
+		padding-left: $gutter-one-and-half
+		padding-right: $gutter-one-and-half + image-width("icons/tile-camera.png")
+		.thumb
+			display: block
+			position: absolute
+			width: $left-thumb-size
+			height: $left-thumb-size
+			top: $gutter-one-and-half
+			left: $gutter-one-and-half
+	&.left-thumb .content
+		padding-left: 2 * $gutter + $left-thumb-size
+	.detail-view-action-panel
+		@include clearfix
+		display: block
+		position: absolute
+		right: 0
+		top: 0
+		width: image-width("icons/tile-camera.png") + 4
+		background-color: #fff
+		padding: 2px
+		padding-bottom: 0
+		z-index: 5
+		> a
+			display: block
+			position: relative
+			margin-bottom: 2px
+			width: image-width("icons/tile-camera.png")
+			height: image-height("icons/tile-camera.png")
+			&.action-note
+				@include icons-sprite(tile-note)
+			&.action-map
+				@include icons-sprite(tile-map)
+			&.action-closewin
+				@include icons-sprite(tile-closewin)
+			&.action-closeloss
+				@include icons-sprite(tile-closeloss)
+.detail-view-table-row
+	display: block
+	position: relative
+	width: 100%
+	padding-bottom: $gutter-half
+	.detail-view-table-left-column
+		display: block
+		position: absolute
+		top: 8px
+		left: 0
+		width: $left-thumb-size + $gutter
+	&.left-column-tile-gray .detail-view-table-left-column
+		width: image-width("icons/gray-phone.png") + $gutter
+	.detail-view-table-right-column
+		display: block
+		position: relative
+		padding-left: $left-thumb-size + $gutter
+	&.left-column-tile-gray .detail-view-table-right-column
+		padding-left: image-width("icons/gray-phone.png") + $gutter
+section.opportunity-overview
+	height: 210px
+	padding-top: 30px
+	h1
+		font-size: 100px
+		line-height: 100px
+
