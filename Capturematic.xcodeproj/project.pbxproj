@@ -203,8 +203,7 @@
 				438BEDB717629797003FC0F3 /* Plugins */,
 				438BED6F17629793003FC0F3 /* Supporting Files */,
 			);
-			name = Capturematic;
-			path = "Media Capture";
+			path = Capturematic;
 			sourceTree = "<group>";
 		};
 		438BED6F17629793003FC0F3 /* Supporting Files */ = {
@@ -462,11 +461,11 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Media Capture\"",
+					"\"$(SRCROOT)/Capturematic\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Media Capture/Capturematic-Prefix.pch";
-				INFOPLIST_FILE = "Media Capture/Capturematic-Info.plist";
+				GCC_PREFIX_HEADER = "Capturematic/Capturematic-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Capturematic/Capturematic-Info.plist";
 				PRODUCT_NAME = Capturematic;
 				WRAPPER_EXTENSION = app;
 			};
@@ -477,11 +476,11 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Media Capture\"",
+					"\"$(SRCROOT)/Capturematic\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Media Capture/Capturematic-Prefix.pch";
-				INFOPLIST_FILE = "Media Capture/Capturematic-Info.plist";
+				GCC_PREFIX_HEADER = "Capturematic/Capturematic-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Capturematic/Capturematic-Info.plist";
 				PRODUCT_NAME = Capturematic;
 				WRAPPER_EXTENSION = app;
 			};
