@@ -30,7 +30,7 @@
 		438BED6D17629793003FC0F3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438BED6C17629793003FC0F3 /* SystemConfiguration.framework */; };
 		438BED7317629794003FC0F3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 438BED7117629794003FC0F3 /* InfoPlist.strings */; };
 		438BED7517629794003FC0F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 438BED7417629794003FC0F3 /* main.m */; };
-		438BED7717629794003FC0F3 /* Media Capture-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 438BED7617629794003FC0F3 /* Media Capture-Prefix.pch */; };
+		438BED7717629794003FC0F3 /* Capturematic-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 438BED7617629794003FC0F3 /* Capturematic-Prefix.pch */; };
 		438BED9317629797003FC0F3 /* SalesforceHybridSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438BED9217629797003FC0F3 /* SalesforceHybridSDK.framework */; };
 		438BED9517629797003FC0F3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 438BED9417629797003FC0F3 /* libz.dylib */; };
 		438BED9917629797003FC0F3 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 438BED9817629797003FC0F3 /* icon-72.png */; };
@@ -73,7 +73,7 @@
 		432F58401766F2BA002DF7A7 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en.lproj; path = CordovaResources.bundle/en.lproj; sourceTree = "<group>"; };
 		432F58411766F2BA002DF7A7 /* es.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = es.lproj; path = CordovaResources.bundle/es.lproj; sourceTree = "<group>"; };
 		432F58421766F2BA002DF7A7 /* se.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = se.lproj; path = CordovaResources.bundle/se.lproj; sourceTree = "<group>"; };
-		438BED4B17629793003FC0F3 /* Media Capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Media Capture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		438BED4B17629793003FC0F3 /* Capturematic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capturematic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		438BED4E17629793003FC0F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		438BED5017629793003FC0F3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		438BED5217629793003FC0F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -90,10 +90,10 @@
 		438BED6817629793003FC0F3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		438BED6A17629793003FC0F3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		438BED6C17629793003FC0F3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		438BED7017629793003FC0F3 /* Media Capture-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Media Capture-Info.plist"; sourceTree = "<group>"; };
+		438BED7017629793003FC0F3 /* Capturematic-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Capturematic-Info.plist"; sourceTree = "<group>"; };
 		438BED7217629794003FC0F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		438BED7417629794003FC0F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		438BED7617629794003FC0F3 /* Media Capture-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Media Capture-Prefix.pch"; sourceTree = "<group>"; };
+		438BED7617629794003FC0F3 /* Capturematic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Capturematic-Prefix.pch"; sourceTree = "<group>"; };
 		438BED9217629797003FC0F3 /* SalesforceHybridSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SalesforceHybridSDK.framework; sourceTree = "<group>"; };
 		438BED9417629797003FC0F3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		438BED9817629797003FC0F3 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "Resources/icons/icon-72.png"; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		438BED4017629793003FC0F3 = {
 			isa = PBXGroup;
 			children = (
-				438BED6E17629793003FC0F3 /* Media Capture */,
+				438BED6E17629793003FC0F3 /* Capturematic */,
 				438BED4D17629793003FC0F3 /* Frameworks */,
 				438BED4C17629793003FC0F3 /* Products */,
 			);
@@ -160,7 +160,7 @@
 		438BED4C17629793003FC0F3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				438BED4B17629793003FC0F3 /* Media Capture.app */,
+				438BED4B17629793003FC0F3 /* Capturematic.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,7 +188,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		438BED6E17629793003FC0F3 /* Media Capture */ = {
+		438BED6E17629793003FC0F3 /* Capturematic */ = {
 			isa = PBXGroup;
 			children = (
 				438BEDC717629912003FC0F3 /* www */,
@@ -203,16 +203,17 @@
 				438BEDB717629797003FC0F3 /* Plugins */,
 				438BED6F17629793003FC0F3 /* Supporting Files */,
 			);
+			name = Capturematic;
 			path = "Media Capture";
 			sourceTree = "<group>";
 		};
 		438BED6F17629793003FC0F3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				438BED7017629793003FC0F3 /* Media Capture-Info.plist */,
+				438BED7017629793003FC0F3 /* Capturematic-Info.plist */,
 				438BED7117629794003FC0F3 /* InfoPlist.strings */,
 				438BED7417629794003FC0F3 /* main.m */,
-				438BED7617629794003FC0F3 /* Media Capture-Prefix.pch */,
+				438BED7617629794003FC0F3 /* Capturematic-Prefix.pch */,
 				438BEDBA17629797003FC0F3 /* config.xml */,
 			);
 			name = "Supporting Files";
@@ -278,9 +279,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		438BED4A17629793003FC0F3 /* Media Capture */ = {
+		438BED4A17629793003FC0F3 /* Capturematic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 438BEDC417629797003FC0F3 /* Build configuration list for PBXNativeTarget "Media Capture" */;
+			buildConfigurationList = 438BEDC417629797003FC0F3 /* Build configuration list for PBXNativeTarget "Capturematic" */;
 			buildPhases = (
 				438BED4517629793003FC0F3 /* Sources */,
 				438BED4617629793003FC0F3 /* Frameworks */,
@@ -292,9 +293,9 @@
 			);
 			dependencies = (
 			);
-			name = "Media Capture";
+			name = Capturematic;
 			productName = "Media Capture";
-			productReference = 438BED4B17629793003FC0F3 /* Media Capture.app */;
+			productReference = 438BED4B17629793003FC0F3 /* Capturematic.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -306,7 +307,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Developerforce;
 			};
-			buildConfigurationList = 438BED4417629793003FC0F3 /* Build configuration list for PBXProject "Media Capture" */;
+			buildConfigurationList = 438BED4417629793003FC0F3 /* Build configuration list for PBXProject "Capturematic" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -318,7 +319,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				438BED4A17629793003FC0F3 /* Media Capture */,
+				438BED4A17629793003FC0F3 /* Capturematic */,
 			);
 		};
 /* End PBXProject section */
@@ -329,7 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				438BED7317629794003FC0F3 /* InfoPlist.strings in Resources */,
-				438BED7717629794003FC0F3 /* Media Capture-Prefix.pch in Resources */,
+				438BED7717629794003FC0F3 /* Capturematic-Prefix.pch in Resources */,
 				438BED9917629797003FC0F3 /* icon-72.png in Resources */,
 				438BED9B17629797003FC0F3 /* icon-72@2x.png in Resources */,
 				438BED9D17629797003FC0F3 /* icon.png in Resources */,
@@ -464,9 +465,9 @@
 					"\"$(SRCROOT)/Media Capture\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Media Capture/Media Capture-Prefix.pch";
-				INFOPLIST_FILE = "Media Capture/Media Capture-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Media Capture/Capturematic-Prefix.pch";
+				INFOPLIST_FILE = "Media Capture/Capturematic-Info.plist";
+				PRODUCT_NAME = Capturematic;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -479,9 +480,9 @@
 					"\"$(SRCROOT)/Media Capture\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Media Capture/Media Capture-Prefix.pch";
-				INFOPLIST_FILE = "Media Capture/Media Capture-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Media Capture/Capturematic-Prefix.pch";
+				INFOPLIST_FILE = "Media Capture/Capturematic-Info.plist";
+				PRODUCT_NAME = Capturematic;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -489,7 +490,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		438BED4417629793003FC0F3 /* Build configuration list for PBXProject "Media Capture" */ = {
+		438BED4417629793003FC0F3 /* Build configuration list for PBXProject "Capturematic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				438BEDC217629797003FC0F3 /* Debug */,
@@ -498,7 +499,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		438BEDC417629797003FC0F3 /* Build configuration list for PBXNativeTarget "Media Capture" */ = {
+		438BEDC417629797003FC0F3 /* Build configuration list for PBXNativeTarget "Capturematic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				438BEDC517629797003FC0F3 /* Debug */,

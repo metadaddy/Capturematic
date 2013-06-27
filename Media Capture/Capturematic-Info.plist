@@ -18,7 +18,7 @@
 		<string>icon-72@2x.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.force.Media-Capture</string>
+	<string>com.force.Capturematic</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -35,6 +35,10 @@
 	<string></string>
 	<key>NSMainNibFile~ipad</key>
 	<string></string>
+	<key>SFDCOAuthLoginHost</key>
+	<string>login.salesforce.com</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -49,7 +53,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>SFDCOAuthLoginHost</key>
-	<string>login.salesforce.com</string>
 </dict>
 </plist>
