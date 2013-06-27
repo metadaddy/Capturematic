@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=0.5,  minimum-scale=0.5, maximum-scale=0.5">
         <title>Salesforce Hybrid Application Bootstrap Page</title>
+      
+        <link rel="stylesheet" href="resources/css/app.css">
+        <link rel="stylesheet" href="resources/css/style.css">
         
         <script src="resources/lib/cordova-2.3.0.js"></script>
         <script src="resources/lib/SFHybridApp.js"></script>
@@ -26,7 +30,6 @@
         <script>
             document.addEventListener("bootstrapStatusEvent", handleStatus);
             function handleStatus(statusEvent) {
-
             	/**
             	 * If an error occurs, display a popup, and reload the page.
             	 */
@@ -42,17 +45,23 @@
     </head>
 
     <body>
+      <div id="app-wrapper">
         <div id="main">
+          <header>
             <h1>Loading...</h1>
+          </header>
+          <div id="app-content">
+            <div id="status">
+              <h2 style="margin: 0.75em;" id="statusText">Loading...</h2>
+            </div>
             <fieldset id="errors" class="logWindow">
                 <legend>Errors</legend>
             </fieldset>
             <fieldset id="console" class="logWindow">
                 <legend>Debug Console</legend>
             </fieldset>
+          </div>
         </div>
-        <div id="status">
-            <div id="statusText">Loading...</div>
-        </div>
+      </div>
     </body>
 </html>

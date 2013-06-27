@@ -293,7 +293,7 @@
 			dependencies = (
 			);
 			name = Capturematic;
-			productName = "Media Capture";
+			productName = "Capturematic";
 			productReference = 438BED4B17629793003FC0F3 /* Capturematic.app */;
 			productType = "com.apple.product-type.application";
 		};
