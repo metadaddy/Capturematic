@@ -78,6 +78,14 @@
   <!-- HTML CODE -->
   <!-- ========= -->
   <div id="app-wrapper">
+    <header>
+      <h1>Loading...</h1>
+    </header>
+    <div id="app-content">
+      <div id="status">
+        <h2 style="margin: 0.75em;">Starting app...</h2>
+      </div>
+    </div>
   </div>
 
   <!-- ========= -->
@@ -88,7 +96,9 @@
       <h1>Objects</h1>
     </header>
     <div id="app-content">
-      <p>Select an object, then a record, then capture photos, audio or video to post to its Chatter page:</p>
+      <section>
+        <p>Select an object, then a record, then capture photos, audio or video to post to its Chatter page:</p>
+      </section>
       <ul id="object-list" class="list-view right-one-icons">
       </ul>
     </div>
@@ -100,11 +110,13 @@
       <h1>Records</h1>
     </header>
     <div id="app-content">
-      <p>Search <b><%= label %></b> records on <b><%= nameField.label %></b> field:</p>
-      <form id="filter-form" action="#">
-        <input type="search" name="filter" id="filter" value="" />
-        <input type="submit" id="search-button" value="Search" />
-      </form>
+      <section>
+        <p>Search <b><%= label %></b> records on <b><%= nameField.label %></b> field:</p>
+        <form id="filter-form" action="#">
+          <input type="search" name="filter" id="filter" value="" />
+          <input type="submit" id="search-button" value="Search" />
+        </form>
+      </section>
       <ul id="record-list" class="list-view right-one-icons">
       </ul>
     </div>
@@ -141,17 +153,21 @@
       <div class="detail-view-header">
         <div class="content">
           <h1><%- Name %></h1>
-          <div class="detail-view-action-panel">
-            <a href="#" class="action-note get_picture">&nbsp;</a>
-            <a href="#" class="action-map capture_audio">&nbsp;</a>
-            <a href="#" class="action-note capture_video">&nbsp;</a>
-          </div>
         </div>
       </div>
       <div class="content">
-        <p>Capture media and post to Chatter for <%- Name %></p>
-        <h2>Message</h2>
-        <textarea id="message" rows="4"></textarea>
+        <section>
+          <p>Capture media and post to Chatter for <%- Name %></p>
+          <h2>Message</h2>
+          <textarea id="message" rows="4"></textarea>
+        </section>
+        <section>
+          <div class="icon-panel">
+            <a href="#" class="icons-tile-camera get_picture">&nbsp;</a>
+            <a href="#" class="icons-tile-mic capture_audio">&nbsp;</a>
+            <a href="#" class="icons-tile-video capture_video">&nbsp;</a>
+          </div>
+        </section>
       </content>
     </div>
   </script>
@@ -161,7 +177,6 @@
   <!-- =============== -->
   <script type="text/javascript">
     function myapp(client) {
-      logToConsole('Starting app');
       Backbone.Force.initialize(client);
 	  
       var app = {}; // create namespace for our app
@@ -475,7 +490,6 @@
             self = this;
           objectsCollection.fetch({
             success: function(){
-              logToConsole('AAA');
               self.slidePage(new app.ObjectsView({model: objectsCollection}));
             },
             error: function(model, response) {
@@ -556,10 +570,9 @@
             self = this;
 
           if (!this.currentPage) {
-            logToConsole('BBB');
             // If there is no current page (app just started) -> No transition: Position new page in the view port
             $(page.el).attr('class', 'page stage-center');
-            logToConsole(page.el);
+            $('#app-wrapper').empty();
             $('#app-wrapper').append(page.el);
             this.pageHistory = [window.location.hash];
             this.currentPage = page;
