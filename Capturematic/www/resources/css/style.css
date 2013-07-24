@@ -1,50 +1,33 @@
-header .back-button {
-  display: block;
-  position: relative;
-  float: left;
-  width: 110px;
-  height: 110px;
-  padding: 30px;
-  z-index: 2;
-}
-
-header .back-button .back-icon {
-  background: url('images/icons/left-arrow-white.png') no-repeat;
-  display: block;
-  position: relative;
-  width: 50px;
-  height: 57px;
-}
-
 .icon-panel {
   overflow: hidden;
-  *zoom: 1;
   display: block;
-  height: 104px;
+  height: 62px;
   background-color: white;
-  padding: 2px;
+  padding: 1px;
   padding-right: 0;
 }
 /* line 35, sass/_detail_view.sass */
 .icon-panel > a {
+  background-repeat: no-repeat;
+  background-size: 60px;
   display: block;
   position: relative;
-  margin-right: 2px;
-  width: 100px;
-  height: 100px;
+  margin-right: 1px;
+  width: 60px;
+  height: 60px;
   float: left;
 }
 
 .icons-tile-camera {
-  background: url('images/icons/tile-camera.png') no-repeat;
+  background: url('../images/icons/tile-camera.png') no-repeat;
 }
 
 .icons-tile-video {
-  background: url('images/icons/tile-video.png') no-repeat;
+  background: url('../images/icons/tile-video.png') no-repeat;
 }
 
 .icons-tile-mic {
-  background: url('images/icons/tile-mic.png') no-repeat;
+  background: url('../images/icons/tile-mic.png') no-repeat;
 }
 
 #app-wrapper {

@@ -1,0 +1,10 @@
+{
+    "remoteAccessConsumerKey": "3MVG9y6x0357HleczgGPFxcVeCMoQknp2Vzy91UCTv421ang0S7DhLehgHMB0Tb1FYqoLmC9OHVCuxJAa4K11",
+    "oauthRedirectURI": "mediacap:///mobilesdk/detect/oauth/done",
+    "oauthScopes": ["web", "api"],
+    "isLocal": true,
+    "startPage": "index.html",
+    "errorPage": "error.html",
+    "shouldAuthenticate": true,
+    "attemptOfflineLoad": false
+}

@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.5,  minimum-scale=0.5, maximum-scale=0.5">
-  <title>Capturematic</title>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
-  <!-- ========= -->
-  <!--    CSS    -->
-  <!-- ========= -->
-  <link rel="stylesheet" href="resources/css/app.css">
-  <link rel="stylesheet" href="resources/css/style.css">
+    <!-- ========= -->
+    <!--    CSS    -->
+    <!-- ========= -->
+    <link rel="stylesheet" href="resources/css/app.css">
+    <link rel="stylesheet" href="resources/css/style.css">
 
-  <!-- ========= -->
-  <!-- Libraries -->
-  <!-- ========= -->
-  <script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
-  <script src="resources/lib/jquery.js" type="text/javascript"></script>
-  <script src="resources/lib/cordova-2.3.0.js"></script>
-  <script src="resources/lib/SFHybridApp.js"></script>
-  <script src="resources/lib/SalesforceOAuthPlugin.js"></script>
-  <script src="resources/lib/lodash.js" type="text/javascript"></script>
-  <script src="resources/lib/backbone.js" type="text/javascript"></script>
-  <script src="resources/lib/forcetk.js" type="text/javascript"></script>
-  <script src="resources/lib/backbone.force.js" type="text/javascript"></script>
-  <script src="resources/lib/main.js"></script>
+    <!-- ========= -->
+    <!-- Libraries -->
+    <!-- ========= -->
+    <!-- Uncomment to debug with Weinre
+    <script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
+    -->
+    <script src="resources/lib/jquery-2.0.0.min.js" type="text/javascript"></script>
+  	<script src="resources/lib/cordova-2.3.0.js" type="text/javascript"></script>
+    <script src="resources/lib/cordova.force.js" type="text/javascript"></script>
+    <script src="resources/lib/lodash.js" type="text/javascript"></script>
+    <script src="resources/lib/backbone.js" type="text/javascript"></script>
+    <script src="resources/lib/forcetk.mobilesdk.js" type="text/javascript"></script>
+    <script src="resources/lib/backbone.force.js" type="text/javascript"></script>
+    <script src="resources/lib/main.min.js" type="text/javascript"></script>
 
-  <script>
+    <!-- log window styling -->
+    <style>
+      .logWindow {display:none; width:700px;}
+      .logWindow > p {padding:0px; margin:0px; word-wrap:break-word;}
+    </style>
+
+    <script>
+    var apiVersion = "v28.0";
+	
+    var forcetkClient;
+    var debugMode = true;
     var logToConsole = cordova.require("salesforce/util/logger").logToConsole;
-    // The version of the Force.com REST API you wish to use in your app.
-    var apiVersion = "v27.0";
 
     // Log JS errors to Cordova console
     window.onerror = function(message, url, lineNumber) {
@@ -37,42 +44,44 @@
     };
     
     jQuery(document).ready(function() {
-      // Add event listeners and so forth here
-      document.addEventListener("deviceready", onDeviceReady,false);
+        //Add event listeners and so forth here
+        logToConsole("onLoad: jquery ready");
+		    document.addEventListener("deviceready", onDeviceReady,false);
     });
 
-    // When this function is called, Cordova has been initialized and is ready 
-    // to roll 
+    // When this function is called, Cordova has been initialized and is ready to roll 
     function onDeviceReady() {
-	    // Call getAuthCredentials to get the initial session credentials
-      cordova.require("salesforce/plugin/oauth").getAuthCredentials(
-        salesforceSessionRefreshed, getAuthCredentialsError);
+        logToConsole("onDeviceReady: Cordova ready");
 
-      // Register to receive notifications when autoRefreshOnForeground 
-      // refreshes the sfdc session
-      document.addEventListener("salesforceSessionRefresh",
-        salesforceSessionRefreshed,false);
+        cordova.require("salesforce/plugin/oauth").getAuthCredentials(salesforceSessionRefreshed, getAuthCredentialsError);
+        document.addEventListener("salesforceSessionRefresh",salesforceSessionRefreshed,false);        
     }
+        
 
     function salesforceSessionRefreshed(creds) {
-      // Depending on how we come into this method, `creds` may be callback 
-      // data from the auth plugin, or an event fired from the plugin.  The 
-      // data is different between the two.
-      var credsData = creds;
-      if (creds.data)  // Event sets the `data` object with the auth data.
-        credsData = creds.data;
-      var client = new forcetk.Client(credsData.clientId, credsData.loginUrl);
-      client.setSessionToken(credsData.accessToken, apiVersion, 
-        credsData.instanceUrl);
-      client.setRefreshToken(credsData.refreshToken);
-	    myapp(client);
+        logToConsole("salesforceSessionRefreshed");
+        
+        // Depending on how we come into this method, `creds` may be callback data from the auth
+        // plugin, or an event fired from the plugin.  The data is different between the two.
+        var credsData = creds;
+        if (creds.data)  // Event sets the `data` object with the auth data.
+            credsData = creds.data;
+
+        var client = new forcetk.Client(credsData.clientId, credsData.loginUrl, null,
+            cordova.require("salesforce/plugin/oauth").forcetkRefresh);
+        client.setSessionToken(credsData.accessToken, apiVersion, 
+          credsData.instanceUrl);
+        client.setRefreshToken(credsData.refreshToken);
+        client.setUserAgentString(credsData.userAgent);
+        myapp(client);
     }
 
     function getAuthCredentialsError(error) {
-      logToConsole("getAuthCredentialsError: " + error);
+        logToConsole("getAuthCredentialsError: " + error);
     }
-  </script>
-</head>
+        
+    </script>
+  </head>
 <body>
   <!-- ========= -->
   <!-- HTML CODE -->
@@ -106,17 +115,24 @@
 
   <script type="text/template" id="records-template">
     <header>
-      <div class="back-button"><span class="back-icon">&nbsp;</span></div>
+      <div class="main-menu-button main-menu-button-left">
+        <a class="left-arrow">&nbsp;</a>
+      </div>
       <h1>Records</h1>
     </header>
     <div id="app-content">
-      <section>
-        <p>Search <b><%= label %></b> records on <b><%= nameField.label %></b> field:</p>
-        <form id="filter-form" action="#">
-          <input type="search" name="filter" id="filter" value="" />
-          <input type="submit" id="search-button" value="Search" />
-        </form>
-      </section>
+      <form id="filter-form" action="#">
+        <section class="data-capture-buttons one-buttons border-bottom">
+          <div class="content">
+            <p>Search <b><%= label %></b> records on <b><%= nameField.label %></b> field:</p>
+            <div class="form-control form-control-text">
+              <input type="text" name="filter" id="filter" value="" />
+            </div>
+            <br/>
+            <a href="#" id="search-button">Search</a>
+          </div>
+        </section>
+      </form>
       <ul id="record-list" class="list-view right-one-icons">
       </ul>
     </div>
@@ -146,7 +162,9 @@
 
   <script type="text/template" id="record-detail-template">
     <header>
-      <div class="back-button"><span class="back-icon">&nbsp;</span></div>
+      <div class="main-menu-button main-menu-button-left">
+        <a class="left-arrow">&nbsp;</a>
+      </div>
       <h1>Capture</h1>
     </header>
     <div id="app-content">
@@ -159,7 +177,9 @@
         <section>
           <p>Capture media and post to Chatter for <%- Name %></p>
           <h2>Message</h2>
-          <textarea id="message" rows="4"></textarea>
+          <div class="form-control form-control-textarea">
+            <textarea id="message" rows="4"></textarea>
+          </div>
         </section>
         <section>
           <div class="icon-panel">
@@ -177,10 +197,12 @@
   <!-- =============== -->
   <script type="text/javascript">
     function myapp(client) {
+        logToConsole('AAA');
       Backbone.Force.initialize(client);
-	  
+        logToConsole('BBB');
+    
       var app = {}; // create namespace for our app
-	
+  
       //--------------
       // Models
       //--------------
@@ -264,26 +286,15 @@
           PathOnClient: filename, // Hint as to type of data
           VersionData: imageData
         });
-        // $.mobile.loading('show', {
-        //   text: 'Uploading '+contentType+' to Chatter Files',
-        //   textVisible: true,
-        // });
+        // TODO - show 'Uploading '+contentType+' to Chatter Files'
         contentVersion.save(null, {
           success: function() {
-            // Fetch the ContentVersion record to get the ContentDocumentId
-            // $.mobile.loading('show', {
-            //   text: 'Fetching Document ID',
-            //   textVisible: true,
-            // });
+            // TODO - show 'Fetching Document ID'
             contentVersion.fetch({
               success: function() {
                 logToConsole("Created contentVersion.attributes.ContentDocumentId: "+
                   contentVersion.attributes.ContentDocumentId);
-                // Post to Chatter feed for Record
-                // $.mobile.loading('show', {
-                //   text: 'Posting Chatter message',
-                //   textVisible: true,
-                // });
+                // TODO - show 'Posting Chatter message'
                 var message = $("#message").val();
                 var body = message ? {
                     messageSegments : [{
@@ -300,9 +311,10 @@
                 };
                 client.ajax('/'+apiVersion+'/chatter/feeds/record/'+recordId+'/feed-items',
                   function(){
-                    // $.mobile.loading("hide");
-                    navigator.notification.alert('Posted '+contentType+' successfully', undefined, 'Success');
-                    // $.mobile.changePage("#success", { role: "dialog", changeHash: false });
+                    // TODO - hide status
+                    navigator.notification.alert('Posted '+contentType+' successfully', function(){
+                      window.location.hash = '#';
+                    }, 'Success');
                   },
                   showError,
                   'POST',
@@ -331,6 +343,7 @@
 
       // renders individual Record for editing
       app.RecordDetailView = Backbone.View.extend({
+        className: "record-detail-view",
         template: _.template($('#record-detail-template').html()),
         render: function(){
           // Annotate the record with its type, so we can render the link
@@ -408,6 +421,7 @@
 
       // renders the full list of Objects calling ObjectView for each one.
       app.ObjectsView = Backbone.View.extend({
+        className: "objects-view",
         template: _.template($('#objects-template').html()),
         initialize: function() {
           this.render();
@@ -434,6 +448,7 @@
 
       // renders the full list of Records calling RecordView for each one.
       app.RecordsView = Backbone.View.extend({
+        className: "records-view",
         template: _.template($('#records-template').html()),
         initialize: function() {
           this.render();
@@ -475,27 +490,33 @@
           "": "objects"
         },
         initialize: function() {
-          // Keep track of the history of pages (we only store the page URL). Used to identify the direction
-          // (left or right) of the sliding transition between pages.
+          // Keep track of the history of pages (we only store the page className). 
+          // Used to identify the direction (left or right) of the sliding transition 
+          // between pages.
           this.pageHistory = [];
 
           // Register event listener for back button throughout the app
-          $('#app-wrapper').on('click', '.back-button', function(event) {
+          $('#app-wrapper').on('click', '.left-arrow', function(event) {
               window.history.back();
               return false;
           });
         },
         objects: function() {
-          var objectsCollection = new app.ObjectsCollection(),
-            self = this;
-          objectsCollection.fetch({
-            success: function(){
-              self.slidePage(new app.ObjectsView({model: objectsCollection}));
-            },
-            error: function(model, response) {
-              logToConsole('ERROR::'+response.responseText);
-            }
-          });
+          if (this.objectsPage) {
+            this.slidePage(this.objectsPage);
+          } else {
+            var objectsCollection = new app.ObjectsCollection(),
+              self = this;
+            objectsCollection.fetch({
+              success: function(){
+                self.objectsPage = new app.ObjectsView({model: objectsCollection});
+                self.slidePage(self.objectsPage);
+              },
+              error: function(model, response) {
+                logToConsole('ERROR::'+response.responseText);
+              }
+            });            
+          }
         },
         getNameField: function(type, callback) {
           client.ajax('/'+apiVersion+'/sobjects/'+type+'/describe/',
@@ -516,18 +537,19 @@
         object: function(type, filter) {
           var self = this;
 
-          // Worksaround - for some reason, the router doesn't parse a
+          // Workaround - for some reason, the router doesn't parse a
           // missing filter correctly
           var queryPos = type.indexOf('?');
           if (queryPos != -1) {
             type = type.substring(0,queryPos);
           }
+
           this.getNameField(type, function(describe, nameField){
             app.RecordModel = Backbone.Force.Model.extend({
               type: type,
               fields: ['Id',nameField.name]
             });
-            var whereClause = filter ? "WHERE "+nameField.name+" LIKE '"+filter+"%'" : "WHERE Id != ''";
+            var whereClause = filter ? "WHERE "+nameField.name+" LIKE '%"+filter+"%'" : "WHERE Id != ''";
             whereClause += " LIMIT 20";
             app.RecordsCollection = Backbone.Force.Collection.extend({
               model: app.RecordModel,
@@ -536,18 +558,28 @@
             var records = new app.RecordsCollection();
             records.fetch({
               success: function(){
-                self.slidePage(new app.RecordsView({
+                var recordsPage = new app.RecordsView({
                   model: records,
                   nameField: nameField,
                   label: describe.label,
                   type: type
-                }));
-                // Activate the search button
-                $('#search-button').on('click', function(event){
-                  event.preventDefault();
-                  var filter = $('#filter').val();
-                  app.router.navigate(type+"?filter="+filter, {trigger: true});
                 });
+
+                // Populate the control
+                recordsPage.$('#filter').val(filter);
+
+                // Activate the search button
+                recordsPage.$('#search-button').on('click', function(event){
+                  event.preventDefault();
+                  var filter = recordsPage.$('#filter').val();
+                  app.router.navigate(type+"?filter="+filter, {
+                    trigger: true, 
+                    replace: (self.currentPage.className !== self.className)
+                  });
+                });
+
+                // Show a new page
+                self.slidePage(recordsPage);
               },
               error: function(model, response) {
                 logToConsole('ERROR::'+response.responseText);
@@ -565,6 +597,7 @@
             }));
           }});
         },
+        // slidePage adapted from Christophe Coenraets
         slidePage: function(page) {
           var slideFrom,
             self = this;
@@ -574,30 +607,33 @@
             $(page.el).attr('class', 'page stage-center');
             $('#app-wrapper').empty();
             $('#app-wrapper').append(page.el);
-            this.pageHistory = [window.location.hash];
+            this.pageHistory = [page.className];
             this.currentPage = page;
             return;
           }
 
           // Cleaning up: remove old pages that were moved out of the viewport
-          $('.stage-right, .stage-left').not('#searchPage').remove();
+          $('.stage-right, .stage-left').not('#objects-template').remove();
 
-          if (page === this.searchPage) {
-            // Always apply a Back (slide from left) transition when we go back to the search page
+          if (page === this.objectsPage) {
+            // Always apply a Back (slide from left) transition when we go back to the objects page
             slideFrom = "left";
             $(page.el).attr('class', 'page stage-left');
             // Reinitialize page history
-            this.pageHistory = [window.location.hash];
-          } else if (this.pageHistory.length > 1 && window.location.hash === this.pageHistory[this.pageHistory.length - 2]) {
-            // The new page is the same as the previous page -> Back transition
+            this.pageHistory = [page.className];
+          } else if (this.pageHistory.length > 1 && page.className === this.pageHistory[this.pageHistory.length - 2]) {
+            // The new page is the same kind as the previous page -> Back transition
             slideFrom = "left";
             $(page.el).attr('class', 'page stage-left');
             this.pageHistory.pop();
-          } else {
-            // Forward transition (slide from right)
+          } else if (page.className !== this.currentPage.className) {
+            // The new page is different from the current page -> Forward transition (slide from right)
             slideFrom = "right";
             $(page.el).attr('class', 'page stage-right');
-            this.pageHistory.push(window.location.hash);
+            this.pageHistory.push(page.className);
+          } else {
+            // No slide - just replace content
+            slideFrom = "none";
           }
 
           $('#app-wrapper').append(page.el);
@@ -605,15 +641,18 @@
           // Wait until the new page has been added to the DOM...
           setTimeout(function() {
               // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
-              $(self.currentPage.el).attr('class', 'page transition ' + (slideFrom === "right" ? 'stage-left' : 'stage-right'));
+              var transition = (slideFrom !== "none") ? 'transition ' : '';
+
+              $(self.currentPage.el).attr('class', 'page ' + transition + (slideFrom === "right" ? 'stage-left' : 'stage-right'));
               // Slide in the new page
-              $(page.el).attr('class', 'page stage-center transition');
+              $(page.el).attr('class', 'page stage-center ' + transition);
+
               self.currentPage = page;
           });
         }
       });
 
-   	  app.router = new app.Router();
+      app.router = new app.Router();
       Backbone.history.start();
     }
   </script>
