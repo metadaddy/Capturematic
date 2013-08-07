@@ -86,14 +86,16 @@
   <!-- ========= -->
   <!-- HTML CODE -->
   <!-- ========= -->
-  <div id="app-wrapper">
+  <div class="app-wrapper">
     <header>
       <h1>Loading...</h1>
     </header>
-    <div id="app-content">
-      <div id="status">
-        <h2 style="margin: 0.75em;">Starting app...</h2>
-      </div>
+    <div class="app-content">
+      <section>
+        <div class="content" id="status">
+          <h2 style="margin: 0.75em;">Starting app...</h2>
+        </div>
+      </section>
     </div>
   </div>
 
@@ -104,9 +106,11 @@
     <header>
       <h1>Objects</h1>
     </header>
-    <div id="app-content">
+    <div class="app-content">
       <section>
-        <p>Select an object, then a record, then capture photos, audio or video to post to its Chatter page:</p>
+        <div class="content">
+          <p>Select an object, then a record, then capture photos, audio or video to post to its Chatter page:</p>
+        </div>
       </section>
       <ul id="object-list" class="list-view right-one-icons">
       </ul>
@@ -120,7 +124,7 @@
       </div>
       <h1>Records</h1>
     </header>
-    <div id="app-content">
+    <div class="app-content">
       <form id="filter-form" action="#">
         <section class="data-capture-buttons one-buttons border-bottom">
           <div class="content">
@@ -167,7 +171,7 @@
       </div>
       <h1>Capture</h1>
     </header>
-    <div id="app-content">
+    <div class="app-content">
       <div class="detail-view-header">
         <div class="content">
           <h1><%- Name %></h1>
@@ -197,9 +201,7 @@
   <!-- =============== -->
   <script type="text/javascript">
     function myapp(client) {
-        logToConsole('AAA');
       Backbone.Force.initialize(client);
-        logToConsole('BBB');
     
       var app = {}; // create namespace for our app
   
@@ -247,7 +249,7 @@
       // Views
       //--------------
 
-      // renders individual Record list item (li)
+      // renders individual Object list item (li)
       app.ObjectView = Backbone.View.extend({
         tagName: 'li',
         template: _.template($('#object-template').html()),
@@ -496,7 +498,7 @@
           this.pageHistory = [];
 
           // Register event listener for back button throughout the app
-          $('#app-wrapper').on('click', '.left-arrow', function(event) {
+          $('.app-wrapper').on('click', '.left-arrow', function(event) {
               window.history.back();
               return false;
           });
@@ -605,8 +607,8 @@
           if (!this.currentPage) {
             // If there is no current page (app just started) -> No transition: Position new page in the view port
             $(page.el).attr('class', 'page stage-center');
-            $('#app-wrapper').empty();
-            $('#app-wrapper').append(page.el);
+            $('.app-wrapper').empty();
+            $('.app-wrapper').append(page.el);
             this.pageHistory = [page.className];
             this.currentPage = page;
             return;
@@ -636,7 +638,7 @@
             slideFrom = "none";
           }
 
-          $('#app-wrapper').append(page.el);
+          $('.app-wrapper').append(page.el);
 
           // Wait until the new page has been added to the DOM...
           setTimeout(function() {

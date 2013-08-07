@@ -30,7 +30,7 @@
   background: url('../images/icons/tile-mic.png') no-repeat;
 }
 
-#app-wrapper {
+.app-wrapper {
   overflow-x: hidden;
   overflow-y: auto;
 }
